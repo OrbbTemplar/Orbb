@@ -79,6 +79,8 @@
   }
   .btn.play { background: var(--accent); color: #0d0f14; border-color: var(--accent); }
   .btn.disabled { opacity: .4; pointer-events: none; }
+  .links { display: flex; gap: 8px; justify-content: center; margin-top: 20px; }
+  .links .btn:hover { border-color: var(--accent); color: var(--accent); }
   footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 48px; }
 </style>
 </head>
@@ -88,6 +90,10 @@
     <div class="tag">BETA</div>
     <h1>OrbbTemplar</h1>
     <p>Games, experiments and downloads.</p>
+    <nav class="links">
+      <a class="btn" href="one.html">One</a>
+      <a class="btn" href="two.html">Two</a>
+    </nav>
   </header>
 
   <main class="grid" id="projects"></main>

@@ -106,10 +106,12 @@
   // play: link to a browser-playable build (leave "" if none)
   // download: link to a zip / GitHub Release (leave "" if none)
   // status: "live" | "wip" | "soon"
+  // hidden: true keeps a project off the page
   const projects = [
     {
       name: "Atari Garden",
       desc: "Retro garden game. Grow, tend, survive the weather.",
+      hidden: true,
       status: "wip",
       play: "",
       download: ""
@@ -117,6 +119,7 @@
     {
       name: "Tree-Person",
       desc: "Work in progress.",
+      hidden: true,
       status: "wip",
       play: "",
       download: ""
@@ -124,6 +127,7 @@
     {
       name: "Project 3",
       desc: "Coming soon.",
+      hidden: true,
       status: "soon",
       play: "",
       download: ""
@@ -133,7 +137,7 @@
   const labels = { live: "Live", wip: "In progress", soon: "Coming soon" };
   const el = document.getElementById("projects");
 
-  for (const p of projects) {
+  for (const p of projects.filter(p => !p.hidden)) {
     const card = document.createElement("article");
     card.className = "card";
     card.innerHTML = `

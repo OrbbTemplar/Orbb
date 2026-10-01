@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrbbTemplar Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --panel: #161a22;
+    --border: #2a3140;
+    --text: #e6e9ef;
+    --muted: #8a93a6;
+    --accent: #7ee787;
+    --accent2: #ffb454;
+    --beta: #ff6b9a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 16px 64px; }
+  header { text-align: center; margin-bottom: 40px; }
+  h1 {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(18px, 4vw, 28px);
+    color: var(--accent);
+    margin: 0 0 12px;
+    text-shadow: 0 0 12px rgba(126, 231, 135, .35);
+  }
+  .tag {
+    display: inline-block;
+    font-family: "Press Start 2P", monospace;
+    font-size: 10px;
+    padding: 6px 8px;
+    border: 1px solid var(--beta);
+    color: var(--beta);
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  header p { color: var(--muted); margin: 0; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color .15s, transform .15s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card h2 { font-size: 18px; margin: 0; }
+  .card p { color: var(--muted); margin: 0; flex: 1; font-size: 14px; }
+  .status { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+  .status.live { color: var(--accent); }
+  .status.wip { color: var(--accent2); }
+  .status.soon { color: var(--muted); }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn.play { background: var(--accent); color: #0d0f14; border-color: var(--accent); }
+  .btn.disabled { opacity: .4; pointer-events: none; }
+  footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 48px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">BETA</div>
+    <h1>OrbbTemplar</h1>
+    <p>Games, experiments and downloads.</p>
+  </header>
+
+  <main class="grid" id="projects"></main>
+
+  <footer>Built with GitHub Pages · <span id="year"></span></footer>
+</div>
+
+<script>
+  // Edit this list to add or change projects.
+  // play: link to a browser-playable build (leave "" if none)
+  // download: link to a zip / GitHub Release (leave "" if none)
+  // status: "live" | "wip" | "soon"
+  const projects = [
+    {
+      name: "Atari Garden",
+      desc: "Retro garden game. Grow, tend, survive the weather.",
+      status: "wip",
+      play: "",
+      download: ""
+    },
+    {
+      name: "Tree-Person",
+      desc: "Work in progress.",
+      status: "wip",
+      play: "",
+      download: ""
+    },
+    {
+      name: "Project 3",
+      desc: "Coming soon.",
+      status: "soon",
+      play: "",
+      download: ""
+    }
+  ];
+
+  const labels = { live: "Live", wip: "In progress", soon: "Coming soon" };
+  const el = document.getElementById("projects");
+
+  for (const p of projects) {
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `
+      <span class="status ${p.status}">${labels[p.status] || ""}</span>
+      <h2></h2>
+      <p></p>
+      <div class="actions">
+        <a class="btn play ${p.play ? "" : "disabled"}" href="${p.play || "#"}">Play</a>
+        <a class="btn ${p.download ? "" : "disabled"}" href="${p.download || "#"}">Download</a>
+      </div>`;
+    card.querySelector("h2").textContent = p.name;
+    card.querySelector("p").textContent = p.desc;
+    el.appendChild(card);
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
